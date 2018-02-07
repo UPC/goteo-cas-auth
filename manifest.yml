@@ -1,0 +1,5 @@
+# This plugin adds support for CAS authentication via settings.yml.
+---
+
+name: CASAuth
+version: 1.0
