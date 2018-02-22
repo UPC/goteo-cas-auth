@@ -127,6 +127,8 @@ class CAS extends \Goteo\Controller\AuthController {
         if (phpCAS::checkAuthentication()) {
             phpCAS::logout();
         }
+
+        return $this->redirect('/');
     }
 
     public function casSignupAction(Request $request) {
