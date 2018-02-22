@@ -10,13 +10,26 @@ Config::addAutoloadDir(__DIR__ . '/src');
 // Override auth routes (no prefix)
 $routes = App::getRoutes();
 
-$routes->add('auth-cas-login', new Route('/login', array(
+$routes->get('auth-login')->setDefaults(array(
     '_controller' => 'Goteo\Controller\AuthController\CAS::casLoginAction',
-)));
+));
 
-$routes->add('auth-cas-logout', new Route('/logout', array(
+$routes->get('auth-login-old-route')->setDefaults(array(
+    '_controller' => 'Goteo\Controller\AuthController\CAS::casLoginAction',
+));
+
+$routes->get('auth-logout')->setDefaults(array(
     '_controller' => 'Goteo\Controller\AuthController\CAS::casLogoutAction',
-)));
+));
+
+$routes->get('auth-logout-old-route')->setDefaults(array(
+    '_controller' => 'Goteo\Controller\AuthController\CAS::casLogoutAction',
+));
+
+// Needed by Goteo\Controller\PoolController::validate
+$routes->get('auth-signup')->setDefaults(array(
+    '_controller' => 'Goteo\Controller\AuthController\CAS::casSignupAction',
+));
 
 // Hidden, only to access as local user (e.g. root)
 $routes->add('auth-local-login', new Route('/local-login', array(
@@ -28,17 +41,10 @@ $routes->add('auth-local-logout', new Route('/local-logout', array(
 	'_controller' => 'Goteo\Controller\AuthController::logoutAction'
 )));
 
-// Needed by Goteo\Controller\PoolController::validate
-$routes->add('auth-cas-signup', new Route('/signup', array(
-    '_controller' => 'Goteo\Controller\AuthController\CAS::casSignupAction',
-)));
-
+// Remove remaining routes defined in src/Routes/auth_routes.php
 $routes->remove('outh-login');
-$routes->remove('auth-signup');
 $routes->remove('auth-signup-old-route');
 $routes->remove('auth-oauth-signup');
 $routes->remove('auth-oauth-signup-old-route');
 $routes->remove('auth-password-recovery');
 $routes->remove('auth-password-reset');
-$routes->remove('auth-login');
-$routes->remove('auth-logout');
