@@ -129,6 +129,8 @@ class CAS extends \Goteo\Controller\AuthController {
             Session::destroy();
             $this->dispatch(AppEvents::LOGOUT, new FilterAuthEvent($user));
 
+            $cas_user = phpCAS::getUser();
+            Message::info("CAS user \"$cas_user\" logging out");
             phpCAS::logout();
         }
 
