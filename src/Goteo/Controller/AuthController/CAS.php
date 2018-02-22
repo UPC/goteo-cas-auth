@@ -127,4 +127,10 @@ class CAS extends \Goteo\Controller\AuthController {
             phpCAS::logout();
         }
     }
+
+    public function casSignupAction(Request $request) {
+        Message::error("Trying to signup with CAS authentication enabled!");
+        $this->dispatch(AppEvents::SIGNUP_FAILED, new FilterAuthEvent(new User()));
+        return $this->redirect('/');
+    }
 }
