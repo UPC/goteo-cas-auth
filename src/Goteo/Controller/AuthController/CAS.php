@@ -118,6 +118,7 @@ class CAS extends \Goteo\Controller\AuthController {
         }
 
         // A subscriber will register a message
+        Message::error("Trying to login with CAS authentication failed!");
         App::dispatch(AppEvents::LOGIN_FAILED, new FilterAuthEvent(new User()));
         return $this->redirect('/');
     }
