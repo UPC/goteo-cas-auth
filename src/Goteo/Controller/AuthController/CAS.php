@@ -49,7 +49,7 @@ class CAS extends \Goteo\Controller\AuthController {
             } else {
                 Message::error("E-mail $user->email for user $cas_user already registered to user $u->userid");
                 $this->dispatch(AppEvents::SIGNUP_FAILED, new FilterAuthEvent($u));
-                return $this->redirect('/login');
+                return $this->redirect('/');
             }
         } elseif ($user->save($errors, $skip_validations)) {
             //si el usuario se ha creado correctamente, login en goteo e importacion de datos
@@ -65,7 +65,7 @@ class CAS extends \Goteo\Controller\AuthController {
             //si no: registrar errores
             Message::error("Saving of new user $cas_user failed!");
             $this->dispatch(AppEvents::SIGNUP_FAILED, new FilterAuthEvent($user));
-            return $this->redirect('/login');
+            return $this->redirect('/');
         }
     }
 
