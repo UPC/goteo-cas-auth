@@ -47,3 +47,10 @@ plugins:
 ## References
 
 * [Extending Goteo](http://goteofoundation.github.io/goteo/docs/developers/extend.html)
+
+## Copyright and License
+
+Copyright © 2017-2018 Universitat Politècnica de Catalunya. All rights reserved.
+
+The code licensed here under the **GNU Affero General Public License**,
+version 3 AGPL-3.0, has been developed by the UPC BarcelonaTech staff.
