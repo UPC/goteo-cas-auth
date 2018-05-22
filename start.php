@@ -48,3 +48,12 @@ $routes->remove('auth-oauth-signup');
 $routes->remove('auth-oauth-signup-old-route');
 $routes->remove('auth-password-recovery');
 $routes->remove('auth-password-reset');
+
+// Override auth routes in src/Routes/invest_routes.php
+$routes->get('invest-login')->setDefaults(array(
+    '_controller' => 'Goteo\Controller\AuthController\CAS::casLoginAction',
+));
+
+$routes->get('invest-signup')->setDefaults(array(
+    '_controller' => 'Goteo\Controller\AuthController\CAS::casSignupAction',
+));
