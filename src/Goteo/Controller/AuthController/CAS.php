@@ -27,6 +27,7 @@ class CAS extends \Goteo\Controller\AuthController {
         $user->userid = $cas_user;
         $user->email = "$cas_user@$mail_domain";
         $user->active = true;
+        $user->node = Config::get('current_node');
 
         //si no existe nombre, nos lo inventamos a partir del userid
         if (trim($user->name) == '') {
